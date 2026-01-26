@@ -1,22 +1,24 @@
 package main
 
 import (
+	"embed"
 	"log"
 	"net/http"
+	"github.com/eigengrau01/gofolio/components"
+
+	"github.com/a-h/templ"
 )
 
+//go:embed static/*
+var static embed.FS
+
+//go:generate npx tailwindcss build -i static/css/style.css -o static/css/tailwind.css -m
+
 func main() {
-	const filepathRoot = "."
-	const port = "8080"
+	homePage := components.Index()
+	pagesHandler := http.NewServeMux()
+	pagesHandler.Handle("/", templ.Handler(homePage))
+	pagesHandler.Handle("/static/", http.FileServer(http.FS(static)))
 
-	mux := http.NewServeMux()
-	mux.Handle("/", http.FileServer(http.Dir(filepathRoot)))
-
-	srv := &http.Server{
-		Addr:    ":" + port,
-		Handler: mux,
-	}
-
-	log.Printf("Server on port: %s\n", port)
-	log.Fatal(srv.ListenAndServe())
+	log.Fatalln(http.ListenAndServe(":8080", pagesHandler))
 }
