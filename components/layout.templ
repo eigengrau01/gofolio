@@ -10,10 +10,13 @@ templ Layout(children ...templ.Component) {
             <link href="/static/css/tailwind.css" rel="stylesheet"/>
             <script src="/static/js/htmx.min.js"></script>
 		</head>
-		<body>
-			for _, child := range children {
-				@child
-			}
+		<body class="bg-black">
+			<div class="h-screen bg-cover bg-no-repeat"
+			     style="background-image: url('/static/waterfall.gif')">
+				for _, child := range children {
+					@child
+				}
+			</div>
 		</body>
 	</html>
 }
