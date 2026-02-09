@@ -1,3 +1,46 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+	scroll-behavior: smooth;
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+	* {
+		scroll-behavior: smooth;
+	}
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+button {
+  &:hover {
+    transform: scale(1.01);
+  }
+
+  &:focus {
+    outline: none !important;
+  }
+
+  &:active {
+    transform: scale(0.99);
+  }
+}
+
+.check-svg {
+  animation: svgScale 0.5s ease-in-out;
+}
+.download-arrow {
+  transition: transform 0.2s linear;
+}
+button:hover .download-arrow {
+  transform: translate(0, 3px);
+}

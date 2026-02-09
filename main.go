@@ -15,7 +15,7 @@ var static embed.FS
 //go:generate npx tailwindcss build -i static/css/style.css -o static/css/tailwind.css -m
 
 func main() {
-	homePage := components.Navbar()
+	homePage := components.Maingrid()
 	pagesHandler := http.NewServeMux()
 	pagesHandler.Handle("/", templ.Handler(homePage))
 	pagesHandler.Handle("/static/", http.FileServer(http.FS(static)))

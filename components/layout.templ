@@ -6,13 +6,12 @@ templ Layout(children ...templ.Component) {
 		<head>
             <meta charset="UTF-8"/>
             <meta name="viewport" content="width=device-width, initial-scale=1"/>
-            <title>Portfolio</title>
+            <title>Gofolio</title>
             <link href="/static/css/tailwind.css" rel="stylesheet"/>
             <script src="/static/js/htmx.min.js"></script>
 		</head>
 		<body class="bg-black">
-			<div class="h-screen bg-cover bg-no-repeat"
-			     style="background-image: url('/static/waterfall.gif')">
+			<div class="h-screen bg-cover bg-no-repeat overflow-y-scroll bg-[url(/static/waterfall.gif)] bg-fixed">
 				for _, child := range children {
 					@child
 				}
